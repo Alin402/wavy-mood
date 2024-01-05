@@ -15,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/api/users', require('./routes/user'));
+app.use('/api/profile', require('./routes/profile'));
+app.use('/api/album', require('./routes/album'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
