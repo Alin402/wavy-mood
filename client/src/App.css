@@ -1,38 +1,281 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#root {
+    margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+:root {
+    --font: calibri;
+    --size-pri: 1px;
+    --size-sec: 100px; 
+    --main-clr: black;
+    --white: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+    background-color: #009E9A;
+    padding :0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navigation {
+    height: 100%;
+    width: 100%;
+    background-color: #1E1D1B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.btn {
+    background-color: #F2EADE;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    padding: 1.3rem 5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.btn:hover {
+    background-color: #ef5aa0;
+    color: white;
+}
+
+.btn-action {
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width:220.52px;
+    min-height: 56px;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    position: relative;
+    border: 2px solid var(--main-clr);
+    color: var(--main-clr);
+    background-color : transparent;
+    overflow: hidden;
+}
+
+    .btn-action:hover i {
+        transform: translateX(10px);
+    }
+
+    .btn-action::before, .btn-action::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -100%;
+        left: 0;
+        background-color: #f58021;
+        z-index: -1;
+        transition: all 150ms ease-in;
+    }
+
+    .btn-action:hover {
+        color: #fff;
+    }
+
+    .btn-action::before {
+        opacity: 0.3;
+    }
+
+    .btn-action::after {
+        transition-delay: 0.3s;
+    }
+
+    .btn-action:hover::before, .btn-action:hover::after {
+        top: 0;
+    }
+
+
+Resources
+
+.nav-title {
+    color: #fff;
+}
+
+.nav-item {
+    font-weight: 700;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.nav-item:hover {
+    color: #ef5aa0;
+}
+
+.middle {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.landing {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20rem;
+    align-items: center;
+}
+
+.middle-header-title {
+    font-size: 10em;
+    color: #fff;
+}
+
+.middle-header-text {
+    font-size: 4em;
+}
+
+.bottom {
+    height: 12vh;
+    width: 100%;
+    background-color: #1E1D1B;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+
+.fullscreen-bottom {
+    height: 100vh;
+    z-index: 1000000;
+}
+
+.casette-img {
+    width: 60rem;
+    height: 50rem;
+}
+
+.logo-img {
+    height: 15rem;
+    width: 34.5rem;
+}
+
+.logo-img-nav {
+    height: 5rem;
+    width: 11.5rem;
+}
+
+.retro-style {
+    border: solid black 3px;
+    border-radius: 5px;
+}
+
+.add-album-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.add-album-icons {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.add-album-icons:hover {
+    color: #ef5aa0;
+}
+
+.btn-delete {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.btn-edit {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 30rem;
+    height: 30rem;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username-title {
+    font-size: 4em;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.top {
+    height: 8vh;
+    width: 100%;
+}
+
+.cover-image {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.form-label-white {
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.blur-background {
+    background-color: rgba(0, 0, 0, .8);
+    backdrop-filter: blur(5px);
+}
+
+.fullscreen-album {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.fullscreen-album-cover {
+    width: 40rem;
+    height: 40rem;
+    object-fit: cover;
+}
+
+.song-artist-fullscreen:hover {
+    text-decoration: underline;
+    display: block;
+}
+
+.song-info-fullscreen {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

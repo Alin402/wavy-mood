@@ -1,0 +1,33 @@
+.alert {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    min-width: 20rem;
+    margin: 1rem 0;
+    color: black;
+    border-radius: 4px;
+    font-weight: 600;
+    border: solid black 3px;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-list {
+    position: fixed;
+    bottom: 0;
+    right: 1rem;
+    z-index: 10000;
+}
+
+.alert-error {
+    background-color: #F3B09A;
+}
+
+.alert-success {
+    background-color: #99edc3;
+}
+
+.close-button {
+    cursor: pointer;
+}
