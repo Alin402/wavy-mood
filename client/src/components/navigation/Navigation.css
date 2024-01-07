@@ -1,0 +1,36 @@
+.nav-title {
+    color: #fff;
+}
+
+.nav-item {
+    font-weight: 700;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all .1s;
+    text-decoration: none;
+    margin: 0 .5rem;
+}
+
+.nav-item:hover {
+    color: #ef5aa0;
+}
+
+.nav-item-inv {
+    font-weight: 700;
+    font-size: 2em;
+    color: #000;
+    cursor: pointer;
+    transition: all .1s;
+    text-decoration: none;
+    margin: 0 .5rem;
+}
+
+.nav-item-inv:hover {
+    color: #ef5aa0;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+}
