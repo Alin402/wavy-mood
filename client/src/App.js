@@ -71,6 +71,7 @@ const App = () => {
       </div>
       <div className={`bottom ${inFullscreenMode && "blur-background fullscreen-bottom"}`}>
       </div>
+      <AlertList />
     </div>
   )
 }
