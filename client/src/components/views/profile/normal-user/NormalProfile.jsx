@@ -15,7 +15,7 @@ import ProfileImage from "../profile-image/ProfileImage";
 import SearchGenres from "./SearchGenres";
 import { NavLink } from "react-router-dom";
 import FollowedArtists from "../../main/FollowedArtists";
-// import PlaylistList from "../../../playlist/playlist-list/PlaylistList";
+import PlaylistList from "../../../playlist/playlist-list/PlaylistList";
 
 const NormalProfile = ({ user }) => {
     const dispatch = useDispatch();
@@ -134,7 +134,7 @@ const NormalProfile = ({ user }) => {
                     </div>
 
                     <div style={{ width: "60%", margin: "2rem auto" }}>
-                        {/* <PlaylistList /> */}
+                        <PlaylistList />
                     </div>
                 </div>
                 :

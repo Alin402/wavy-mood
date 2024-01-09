@@ -1,0 +1,29 @@
+.create-container {
+    position: fixed;
+    right: 3rem;
+    bottom: 11rem;
+    color: white;
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plus-container {
+    background-color: #1E1D1B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.plus-container:hover {
+    background-color: #ef5aa0;
+}
+
+.create-content {
+    height: 20rem;
+    width: 65px;
+    background-color: #1E1D1B;
+    margin-bottom: 1rem;
+}
