@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import LandingView from "./components/views/landing/LandingView";
 import SignUpView from "./components/views/signup/SignUpView";
-import LogInView from "./components/views/signup/LogInView"
+import LogInView from "./components/views/signup/LogInView";
+import MainView from "./components/views/main/MainView";
+import ProfileView from "./components/views/profile/ProfileView";
+import EditProfileView from "./components/views/profile/EditProfileView";
 import Navigation from "./components/navigation/Navigation";
 import { Routes, Route } from "react-router-dom";
 import AlertList from "./components/alerts/AlertList";
+import PrivateRoute from "./components/routing/ProtectedRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./actions/user";
 import { LOGOUT } from "./actions/types";
@@ -67,6 +71,18 @@ const App = () => {
           <Route path="/" element={<LandingView isAudioPlay={isAudioPlay} />} />
           <Route path="/signup" element={<SignUpView isAudioPlay={isAudioPlay} />} />
           <Route path="/login" element={<LogInView isAudioPlay={isAudioPlay} />} />
+          <Route
+            path="main"
+            element={<PrivateRoute component={MainView} />}
+          />
+          <Route
+            path="profile"
+            element={<PrivateRoute component={ProfileView} />}
+          />
+          <Route
+            path="profile/edit"
+            element={<PrivateRoute component={EditProfileView} />}
+          />
         </Routes>
       </div>
       <div className={`bottom ${inFullscreenMode && "blur-background fullscreen-bottom"}`}>
