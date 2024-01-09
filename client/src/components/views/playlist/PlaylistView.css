@@ -1,0 +1,18 @@
+.playlist-view {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    background-color: #1E1D1B;
+    padding: 2rem;
+}
+
+.playlist-title {
+    color: #fff;
+    font-size: 5em;
+}
+
+.playlist-description {
+    color: #fff;
+    font-size: 3em;
+    margin-top: 2rem;
+}

@@ -1,0 +1,12 @@
+.artist {
+    margin: 1rem 0;
+    padding: .5rem 1rem;
+    background-color: #f58021;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.artist-title {
+    font-size: 3em;
+}

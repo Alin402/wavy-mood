@@ -1,0 +1,51 @@
+.album-cover-picture {
+    width: 40rem;
+    height: 40rem;
+}
+
+.album-container {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.missing-album-picture {
+    width: 40rem;
+    height: 40rem;
+    background-color: #d3d3d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+.album-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background-color: #ef5aa0;
+}
+
+.album-title {
+    font-size: 5em;
+    margin-left: auto;
+}
+
+.profile-artist {
+    font-size: 3em;
+}
+
+.songs-container {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.title-container {
+    margin: 0 auto;
+}
+
+.photo-and-name {
+    display: flex;
+    align-items: center;
+}

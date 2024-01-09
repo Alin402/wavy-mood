@@ -1,0 +1,14 @@
+.album-cover-photo {
+    width: 25rem;
+    height: 25rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d3d3d3;
+}
+
+.album-preview-photo {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 5px;
+}

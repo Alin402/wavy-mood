@@ -1,0 +1,76 @@
+.results-container-playlist {
+    background-color: #ef5aa0;
+    max-height: 20rem;
+    overflow-y: scroll;
+    margin-top: 1rem;
+    position: fixed;
+    margin-top: 6rem;
+    border: solid black 3px;
+    border-radius: 5px;
+}
+
+.add-song {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.add-song:hover {
+    color: #fff;
+}
+
+.create-playlist-container {
+    display: flex;
+}
+
+.songs-to-add-container {
+    width: 100%;
+    height: 30rem;
+    overflow-y: scroll;
+    padding: .5rem;
+}
+
+.song-to-add {
+    border-color: #fff;
+    height: 3rem;
+    padding: .5rem;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: .4rem;
+}
+
+.song-to-add-name {
+    color: #fff;
+}
+
+.remove-song-icon {
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.playlist-list {
+
+}
+
+.playlist {
+    width: 30rem;
+    height: 6rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    background-color: #1E1D1B;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.playlist-link {
+    color: #fff;
+    font-size: 1.3em;
+    transition: all .2s;
+}
+
+.playlist-date {
+    color: #fff;
+}

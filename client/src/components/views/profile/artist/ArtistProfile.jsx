@@ -7,7 +7,7 @@ import ImageUpload from "../image-upload/ImageUpload";
 import { createArtistProfile, getArtistProfile } from "../../../../actions/profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import AlbumList from "../../../album/album-list/AlbumList";
+import AlbumList from "../../../album/album-list/AlbumList";
 import { NavLink } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
@@ -155,7 +155,7 @@ const ArtistProfile = ({ user }) => {
                         </div>
                     </div>
                     <div style={{ marginTop: "2rem" }}>
-                        {/* <AlbumList /> */}
+                        <AlbumList />
                     </div>
                 </div> :
                 (
