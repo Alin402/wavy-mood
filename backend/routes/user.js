@@ -4,7 +4,10 @@ const {
   registerUser,
   loginUser,
   getMe,
-  googleRegisterUser
+  googleRegisterUser,
+  sendVerificationCode,
+  verifyVerificationCode,
+  changePassword
 } = require('../controllers/user')
 const { protect } = require('../middleware/auth');
 const { body } = require("express-validator");
@@ -36,5 +39,22 @@ router.post('/login', [
   }),
 ], loginUser)
 router.get('/me', protect, getMe)
+
+router.post("/send-verification-code", body('email').custom(async value => {
+  const user = await User.findOne({ email: value });
+  if (!user) {
+    throw new Error('Email not registered or empty');
+  }
+}), sendVerificationCode)
+
+router.post('/verify-verification-code', [
+  body("code").notEmpty().withMessage("You must enter a verification code"),
+  body("email").notEmpty().withMessage("Email is required"),
+], verifyVerificationCode)
+
+router.post('/change-password', [
+  body("newPassword").isLength({ min: 8 }).withMessage("The password must have a minimum of 8 characters"),
+  body("email").notEmpty().withMessage("Email is required"),
+], changePassword)
 
 module.exports = router;

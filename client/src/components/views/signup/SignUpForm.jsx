@@ -3,7 +3,7 @@ import { register } from "../../../actions/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import { api } from "../../../utils/api";
 import { setAlert } from "../../../actions/alert";
@@ -84,7 +84,12 @@ const SignUpForm = () => {
                     <label className="form-label" htmlFor="isArtist" style={{ marginLeft: ".5rem" }}>Are you an arist?</label>
                 </div>
                 <div className="form-group" style={{ display: "flex" }}>
-                    <button className="btn-submit" onClick={submit}>Sign Up</button>
+                    <div style={{ display: "flex" }}>
+                        <button className="btn-submit" onClick={submit}>Sign Up</button>
+                        <Link to="/forgot-password"k>
+                            <button style={{ width: "14rem", marginLeft: ".5rem" }} className="btn-submit">forgot password</button>
+                        </Link>
+                    </div>
                     <div style={{ marginTop: ".5rem" }}>
                         <GoogleLogin
                             onSuccess={(credentialResponse) => handleGoogleSuccess(credentialResponse )}
