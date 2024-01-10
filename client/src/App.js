@@ -26,6 +26,7 @@ import SongUpload from "./components/songs/song-upload/SongUpload";
 import CreatePlaylistForm from "./components/playlist/CreatePlaylistForm";
 import ArtistView from "./components/views/artist/ArtistView";
 import PlaylistView from "./components/views/playlist/PlaylistView";
+import ForgotPassword from "./components/views/forgot-password/ForgotPassword";
 import { api } from "./utils/api";
 import { setAlert } from "./actions/alert";
 import {
@@ -112,6 +113,7 @@ useEffect(() => {
           <Route path="/" element={<LandingView isAudioPlay={isAudioPlay} />} />
           <Route path="/signup" element={<SignUpView isAudioPlay={isAudioPlay} />} />
           <Route path="/login" element={<LogInView isAudioPlay={isAudioPlay} />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route
             path="profile"
             element={<PrivateRoute component={ProfileView} />}

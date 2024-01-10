@@ -4,6 +4,9 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 const { validationResult } = require("express-validator");
 const axios = require("axios");
+const { generateVerificationCode } = require("../utils/generateVerificationCode");
+const VerificationCode = require("../models/verificationCode");
+const sgMail = require('@sendgrid/mail');
 
 const registerUser = asyncHandler(async (req, res) => {
     const { email, name, password, isArtist } = req.body;
@@ -119,9 +122,108 @@ const getMe = asyncHandler(async (req, res) => {
     }
 })
 
+const sendVerificationCode = asyncHandler(async (req, res) => {
+    const { email } = req.body;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        let code = await VerificationCode.findOne({ email });
+        if (code) {
+            return res.status(404).json({ errors: [ { msg: "A code was already sent" } ] });
+        }
+
+        code = generateVerificationCode();
+
+        const verificationCode = new VerificationCode({ email, code });
+        await verificationCode.save();
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+        const msg = {
+            to: email,
+            from: "balanescu.alin03@gmail.com",
+            subject: "Wavy Mood Verification Code",
+            html: `
+                <h2>Wavy Mood verification code</h2>
+                <p>Your verification code is:</p>
+                <h2>${code}</h2>
+            `
+        };
+
+        await sgMail.send(msg);
+
+        return res.status(200).json({ msg: "sent" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Server error" }); 
+    }
+})
+
+const verifyVerificationCode = asyncHandler(async (req, res) => {
+    const { email, code } = req.body;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const verificationCode = await VerificationCode.findOne({ email });
+
+        if (!verificationCode) {
+            return res.status(404).json({ errors: [ { msg: "Code expired" } ] });
+        }
+
+        if (verificationCode.code !== code) {
+            return res.status(404).json({ errors: [ { msg: "Code invalid. Try again" } ] });
+        } 
+
+        await VerificationCode.deleteOne({ _id: verificationCode._id });
+
+        return res.status(200).json({ msg: "success" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Server error" }); 
+    }
+})
+
+const changePassword = asyncHandler(async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ errors: [ { msg: "User not found" } ] });
+        }
+
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(newPassword, salt);
+
+        user.password = hashedPassword;
+        await user.save();
+
+        return res.status(200).json({ msg: "success" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Server error" }); 
+    }
+})
+
 module.exports = {
     registerUser,
     loginUser,
     getMe,
-    googleRegisterUser
+    googleRegisterUser,
+    sendVerificationCode,
+    verifyVerificationCode,
+    changePassword
 }
