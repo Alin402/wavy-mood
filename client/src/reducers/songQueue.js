@@ -7,7 +7,8 @@ import {
 
 const emptyState = {
     songs: [],
-    currentSong: {}
+    currentSong: {},
+    currentSongUrl: ""
 }
 
 const initialState = JSON.parse(localStorage.getItem("songQueue")) || emptyState;
@@ -17,7 +18,7 @@ const songQueue = (state = initialState, action) => {
   
     switch (type) {
       case SET_CURRENT_SONG:
-        let newStateCurrentSong = { ...state, currentSong: payload };
+        let newStateCurrentSong = { ...state, currentSong: payload.song, currentSongUrl: payload.url };
         localStorage.setItem("songQueue", JSON.stringify(newStateCurrentSong));
         return newStateCurrentSong;
       case ADD_SONG_IN_QUEUE:

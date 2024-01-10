@@ -60,7 +60,7 @@ const user = useSelector((state) => state.user.user.user);
             </div>
             <div style={{ display: "flex" }}>
                 {
-                    currentSong._id === song._id ?
+                    currentSong?._id === song?._id ?
                     <PlayingIcon color="#ef5aa0" size={50} className="play-icon" /> :
                     <PlayIcon color="#ef5aa0" size={50} className="play-icon" onClick={handlePlaySong} />
                 }
