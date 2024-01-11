@@ -2,8 +2,9 @@ import "./AddAlbum.css";
 import { useState } from "react";
 import { BiSolidPhotoAlbum as PhotoIcon } from "react-icons/bi";
 import { createAlbum } from "../../../actions/album";
+import { getArtistProfile } from "../../../actions/profile";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom" 
+import { useNavigate } from "react-router-dom";
 
 const AddAlbumForm = ({ setOpenAlbumModal }) => {
     const [formAlbumData, setFormAlbumData] = useState({
@@ -34,7 +35,9 @@ const AddAlbumForm = ({ setOpenAlbumModal }) => {
     }
 
     const submit = () => {
-        dispatch(createAlbum(formAlbumData, navigate, setOpenAlbumModal))
+        dispatch(getArtistProfile((profile) => {
+            dispatch(createAlbum(formAlbumData, navigate, setOpenAlbumModal, profile))
+        }))
     }
 
     return (

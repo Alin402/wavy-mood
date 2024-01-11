@@ -7,8 +7,10 @@ import {
   GET_ALBUMS,
   DELETE_ALBUM
 } from './types';
+import io from "socket.io-client";
+const socket = io("http://localhost:5000");
 
-export const createAlbum = (formData, navigate, setOpenModal) => async (dispatch) => {
+export const createAlbum = (formData, navigate, setOpenModal, profile) => async (dispatch) => {
   try {
     const res = await api.post('/album', formData);
 
@@ -21,6 +23,12 @@ export const createAlbum = (formData, navigate, setOpenModal) => async (dispatch
         type: SET_ALERT,
         payload: { type: "success", msg: "Album successfully created" }
       })
+
+      if (profile?.followers?.length) {
+        console.log(profile)
+        socket.emit("new-album-notification", {name: profile.username, followers: profile.followers});
+      }
+
       setOpenModal(false);
       navigate("/profile")
     }

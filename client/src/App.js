@@ -36,10 +36,17 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+import { Notifications } from 'react-push-notification';
+import addNotification from 'react-push-notification';
+import { getNormalUserProfile } from "./actions/profile";
+
+import io from "socket.io-client";
+const socket = io("http://localhost:5000");
 
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const isArtist = useSelector(state => state.user?.user?.user?.isArtist)
   const location = useLocation();
 
   const [openCreate, setOpenCreate] = useState(false);
@@ -50,6 +57,22 @@ const App = () => {
 
   const [album, setAlbum] = useState({});
   const currentSong = useSelector((state) => state.songQueue.currentSong);
+
+  useEffect(() => {
+    socket.on("show-new-album-notification", data => {
+      if (!isArtist) {
+        dispatch(getNormalUserProfile((profile) => {
+          if(data.followers.indexOf(profile._id) !== -1) {
+            addNotification({
+              title: 'New Album!!!',
+              message: `Your followed artist ${data.name} has just released a new album! Check it out`,
+              native: true
+            });
+          }
+        }))
+      }
+    })
+  }, [socket])
 
 
   const getAlbum = async (albumId) => {
@@ -104,6 +127,7 @@ useEffect(() => {
 
   return (
     <div className="main">
+      <Notifications />
       <div className="top">
         <Navigation />
       </div>
