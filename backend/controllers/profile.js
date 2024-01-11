@@ -241,6 +241,8 @@ const followArtist = asyncHandler(async (req, res) => {
 
         userProfile.followedArtists.push(req.body.artistId);
         artistProfile.noFollowers++;
+        artistProfile.followers.push(userProfile._id);
+        await artistProfile.save();
 
         await userProfile.save();
         await artistProfile.save();

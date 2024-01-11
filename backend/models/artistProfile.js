@@ -21,6 +21,11 @@ const profileSchema = mongoose.Schema(
         type: String
       }
     ],
+    followers: [
+      {
+          type: mongoose.Schema.Types.ObjectId
+      }
+    ],
     noFollowers: {
       type: Number,
       default: 0
