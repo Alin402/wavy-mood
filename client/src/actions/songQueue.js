@@ -4,11 +4,25 @@ import {
     GET_CURRENT_SONG,
     SET_QUEUE
 } from "./types";
+import { api } from "../utils/api";
 
-export const setCurrentSong = (index) => (dispatch) => {
-    dispatch({
-        type: SET_CURRENT_SONG,
-        payload: index
+const getSongUrl = async (songUrl, callback) => {
+    try {
+        const res = await api.get(`/album/song/${songUrl}`);
+        if (res?.data.url) {
+            callback(res.data.url);
+        }
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+export const setCurrentSong = (index) => async (dispatch) => {
+    await getSongUrl(index.fileUrl, (url) => {
+        dispatch({
+            type: SET_CURRENT_SONG,
+            payload: { song: index, url }
+        })
     })
 }
 

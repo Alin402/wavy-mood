@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { BsFillPlayBtnFill } from "react-icons/bs";
@@ -14,6 +14,7 @@ import {
 import "./Player.css";
 import { MdOpenInFull as OpenFullScreenIcon } from "react-icons/md";
 import { MdCloseFullscreen as CloseFullScreenIcon } from "react-icons/md";
+import { setAlert } from "../../actions/alert";
 
 const PlayIcon = () => 
     <BsFillPlayBtnFill 
@@ -48,6 +49,7 @@ const VolumeMuteIcon = () =>
 const Player = ({ pause, play, inFullscreenMode, setInFullscreenMode }) => {
     const dispatch = useDispatch();
     const currentSong = useSelector((state) => state.songQueue.currentSong);
+    const currentSongUrl = useSelector((state) => state.songQueue.currentSongUrl);
     const songs = useSelector((state) => state.songQueue.songs)
 
     const playNextSong = () => {
@@ -94,7 +96,7 @@ const Player = ({ pause, play, inFullscreenMode, setInFullscreenMode }) => {
                 <AudioPlayer
                     autoPlayAfterSrcChange={true}
                     showSkipControls
-                    src={`https://wavymoodstorage.blob.core.windows.net/mp3files/569849198597346-King Kunta.mp3.mp3`}
+                    src={currentSongUrl}
                     showFilledProgress
                     style={{ 
                         backgroundColor: inFullscreenMode ? "inherit" : "#1E1D1B",

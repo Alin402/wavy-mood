@@ -9,7 +9,8 @@ const {
     getAlbum,
     deleteAlbum,
     getAlbumsView,
-    getLatestAlbums
+    getLatestAlbums,
+    getSong
 } = require("../controllers/album");
 const { uploadFile } = require("../utils/uploadFile");
 
@@ -31,6 +32,9 @@ router.post("/uploadSong", [
   uploadFile.single("file")
 ], uploadSong)
 
+router.get('/song/:songUrl', protect, getSong);
+
 router.delete("/del/:albumId", protect, deleteAlbum);
 
 module.exports = router;
+
